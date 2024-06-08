@@ -109,7 +109,7 @@ export  default function Index({ auth, projects, queryParams = null, success }){
                                         Due Date
                                       </TableHeading>
                                         <th className="px-3 py-3">Created By</th>
-                                        <th className="px-3 py-3 text-right">Actions</th>
+                                        <th className="px-3 py-3 text-center">Actions</th>
                                     </tr>
                                     </thead>
                                     <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 border-b-2 border-gray-500">
@@ -172,6 +172,9 @@ export  default function Index({ auth, projects, queryParams = null, success }){
                                                 >
                                                   {PROJECT_STATUS_TEXT_MAP[project.status]}
                                                 </span>
+                                            </td>
+                                            <td className="px-3 py-2 text-nowrap">
+                                                {project.created_at}
                                             </td>
                                             <td className="px-3 py-2 text-nowrap">
                                                 {project.due_date}
