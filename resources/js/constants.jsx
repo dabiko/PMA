@@ -5,7 +5,7 @@ export const PROJECT_STATUS_CLASS_MAP = {
 };
 export const PROJECT_STATUS_TEXT_MAP = {
   pending: "Pending",
-  in_progress: "In Progress",
+  in_progress: "WIP",
   completed: "Completed",
 };
 export const TASK_STATUS_CLASS_MAP = {
@@ -15,7 +15,7 @@ export const TASK_STATUS_CLASS_MAP = {
 };
 export const TASK_STATUS_TEXT_MAP = {
   pending: "Pending",
-  in_progress: "In Progress",
+  in_progress: "WIP",
   completed: "Completed",
 };
 export const TASK_PRIORITY_CLASS_MAP = {
