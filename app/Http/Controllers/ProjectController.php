@@ -58,6 +58,7 @@ class ProjectController extends Controller
         //dd($data);
         /** @var $image UploadedFile */
         $image = $data['image'] ?? null;
+
         $data['created_by'] = Auth::id();
         $data['updated_by'] = Auth::id();
         if ($image) {
