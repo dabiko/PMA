@@ -7,6 +7,7 @@ import { Link, router } from "@inertiajs/react";
 import SecondaryButton from "@/Components/SecondaryButton.jsx";
 import DangerButton from "@/Components/DangerButton.jsx";
 import PrimaryButton from "@/Components/PrimaryButton.jsx";
+import {EyeIcon, PencilSquareIcon, TrashIcon} from "@heroicons/react/16/solid/index.js";
 
 export default function TasksTable({
   tasks,
@@ -179,31 +180,38 @@ export default function TasksTable({
                 <td className="px-3 py-2 text-nowrap">{task.created_at}</td>
                 <td className="px-3 py-2 text-nowrap">{task.due_date}</td>
                 <td className="px-3 py-2">{task.createdBy.name}</td>
-                <td className="px-3 py-2 text-nowrap">
-                    <SecondaryButton>
-                        <Link
-                            href={route("task.edit", task.id)}
-                            className="font-medium text-blue-600 dark:text-blue-500 hover:underline mx-1"
+                  <td className="px-3 py-2 text-nowrap">
+                      <button
+                         className="inline-flex items-center px-3 py-2 bg-white dark:bg-indigo-500 border border-indigo-300 dark:border-indigo-500 rounded-md font-semibold text-xs text-gray-600 dark:text-gray-300 uppercase tracking-widest shadow-sm hover:bg-indigo-600 dark:hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 disabled:opacity-25 transition ease-in-out duration-150"
                           >
-                            Edit
+                            <Link href={route("task.show", task.id)}
+                                 >
+                                 <EyeIcon width={15} color={"white"} />
+                             </Link>
+                      </button>&ensp;&ensp;
+                      <button
+                          className="inline-flex items-center px-3 py-2 bg-white dark:bg-indigo-500 border border-indigo-300 dark:border-indigo-500 rounded-md font-semibold text-xs text-gray-600 dark:text-gray-300 uppercase tracking-widest shadow-sm hover:bg-indigo-600 dark:hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 disabled:opacity-25 transition ease-in-out duration-150"
+                      >
+                          <Link href={route("task.edit", task.id)}
+                          >
+                              <PencilSquareIcon width={15} color={"white"}/>
                           </Link>
-                    </SecondaryButton>&ensp;&ensp;
+                      </button>
+                      &ensp;&ensp;
 
-                    <DangerButton>
-                        <Link
-                            href={route("task.destroy", task.id)}
-                            className="font-medium text-white-600 dark:text-white-500 hover:cursor-pointer"
-                          >
-                            Delete
-                          </Link>
-                    </DangerButton>
-                </td>
+                      <button
+                          onClick={(e) => deleteTask(task)}
+                          className="inline-flex items-center px-3 py-2 bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 active:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150"
+                      >
+                          <TrashIcon width={15}/>
+                      </button>
+                  </td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
-      <Pagination links={tasks.meta.links} />
+        <Pagination links={tasks.meta.links}/>
     </>
   );
 }

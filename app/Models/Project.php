@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * @method static create(mixed $data)
+ * @property mixed $name
+ * @property mixed $image_path
  */
 class Project extends Model
 {

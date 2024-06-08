@@ -4,6 +4,7 @@ import { Head, Link } from "@inertiajs/react";
 
 import TasksTable from "./TasksTable";
 import PrimaryButton from "@/Components/PrimaryButton.jsx";
+import {PlusCircleIcon} from "@heroicons/react/16/solid/index.js";
 
 export default function Index({ auth, success, tasks, queryParams = null }) {
   return (
@@ -14,11 +15,13 @@ export default function Index({ auth, success, tasks, queryParams = null }) {
           <h2 className="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             Tasks
           </h2>
-          <PrimaryButton>
-              <Link href={route("task.create")}>
-                Add new
-             </Link>
-          </PrimaryButton>
+            <Link className={"display-block"} href={route("task.create")}>
+                 <PrimaryButton>
+                    <PlusCircleIcon width={20}></PlusCircleIcon>
+                      &ensp;Task
+                 </PrimaryButton>
+            </Link>
+
         </div>
       }
     >

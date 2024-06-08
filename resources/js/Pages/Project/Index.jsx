@@ -8,7 +8,12 @@ import {PROJECT_STATUS_CLASS_MAP, PROJECT_STATUS_TEXT_MAP} from "@/constants.jsx
 import TextInput from "@/Components/TextInput.jsx";
 import SelectInput from "@/Components/SelectInput.jsx";
 import TableHeading from "@/Components/TableHeading.jsx";
-import {PlusCircleIcon} from "@heroicons/react/16/solid/index.js";
+import {
+     EyeIcon,
+    PencilSquareIcon,
+    PlusCircleIcon,
+    TrashIcon
+} from "@heroicons/react/16/solid/index.js";
 
 export  default function Index({ auth, projects, queryParams = null, success }){
   queryParams = queryParams || {};
@@ -42,6 +47,13 @@ export  default function Index({ auth, projects, queryParams = null, success }){
     router.get(route("project.index"), queryParams);
   };
 
+  const deleteProject = (project) => {
+    if (!window.confirm("Are you sure you want to delete the project?")) {
+      return;
+    }
+    router.delete(route("project.destroy", project.id));
+  };
+
 
     return (
          <AuthenticatedLayout
@@ -54,7 +66,7 @@ export  default function Index({ auth, projects, queryParams = null, success }){
 
                       <Link className={"display-block"} href={route("project.create")}>
                            <PrimaryButton>
-                              <PlusCircleIcon width={25}></PlusCircleIcon>
+                              <PlusCircleIcon width={20}></PlusCircleIcon>
                                &ensp;Project
                          </PrimaryButton>
                       </Link>
@@ -196,23 +208,31 @@ export  default function Index({ auth, projects, queryParams = null, success }){
                                             </td>
                                             <td className="px-3 py-2">{project.createdBy.name}</td>
                                             <td className="px-3 py-2 text-nowrap">
-                                                <SecondaryButton>
-                                                    <Link
-                                                        href={route("project.edit", project.id)}
-                                                        className="font-medium text-blue-600 dark:text-blue-500 hover:cursor-pointer"
-                                                    >
-                                                        Edit
-                                                    </Link>
-                                                </SecondaryButton>&ensp;&ensp;
 
-                                                <DangerButton>
-                                                    <Link
-                                                        href={route("project.destroy", project.id)}
-                                                        className="font-medium text-white-600 dark:text-white-500 hover:cursor-pointer"
+                                                <button
+                                                    className="inline-flex items-center px-3 py-2 bg-white dark:bg-indigo-500 border border-indigo-300 dark:border-indigo-500 rounded-md font-semibold text-xs text-gray-600 dark:text-gray-300 uppercase tracking-widest shadow-sm hover:bg-indigo-600 dark:hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 disabled:opacity-25 transition ease-in-out duration-150"
+                                                >
+                                                    <Link href={route("project.show", project.id)}
                                                     >
-                                                        Delete
+                                                       <EyeIcon width={15} color={"white"} />
                                                     </Link>
-                                                </DangerButton>
+                                                </button>&ensp;&ensp;
+
+                                                <button
+                                                    className="inline-flex items-center px-3 py-2 bg-white dark:bg-indigo-500 border border-indigo-300 dark:border-indigo-500 rounded-md font-semibold text-xs text-gray-600 dark:text-gray-300 uppercase tracking-widest shadow-sm hover:bg-indigo-600 dark:hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 disabled:opacity-25 transition ease-in-out duration-150"
+                                                >
+                                                    <Link href={route("project.edit", project.id)}
+                                                    >
+                                                       <PencilSquareIcon width={15} color={"white"} />
+                                                    </Link>
+                                                </button>&ensp;&ensp;
+
+                                                <button
+                                                    onClick={(e) => deleteProject(project)}
+                                                    className="inline-flex items-center px-3 py-2 bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 active:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150"
+                                                >
+                                                    <TrashIcon width={15}/>
+                                                </button>
 
                                             </td>
                                         </tr>
@@ -222,9 +242,9 @@ export  default function Index({ auth, projects, queryParams = null, success }){
                             </div>
                             <Pagination links={projects.meta.links}/>
                         </div>
-                    </div>
-                </div>
-            </div>
+                     </div>
+                 </div>
+             </div>
          </AuthenticatedLayout>
     )
 }

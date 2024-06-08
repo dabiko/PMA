@@ -6,6 +6,8 @@ import {
 } from "@/constants.jsx";
 import TasksTable from "../Task/TasksTable";
 import SecondaryButton from "@/Components/SecondaryButton.jsx";
+import PrimaryButton from "@/Components/PrimaryButton.jsx";
+import {BackwardIcon, PencilSquareIcon, PlusCircleIcon} from "@heroicons/react/16/solid/index.js";
 export default function Show({ auth, success, project, tasks, queryParams }) {
   return (
     <AuthenticatedLayout
@@ -15,12 +17,13 @@ export default function Show({ auth, success, project, tasks, queryParams }) {
           <h2 className="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             Project: {project.name}
           </h2>
-         <SecondaryButton>
-              <Link href={route("project.edit", project.id)}
-                    className="font-medium text-blue-600 dark:text-blue-500 hover:underline mx-1">
-                Edit
-              </Link>
-         </SecondaryButton>
+            <Link className={"display-block"} href={route("project.edit", project.id)}>
+                <PrimaryButton>
+                     <PencilSquareIcon width={20}  />
+                        &ensp;Edit
+                </PrimaryButton>
+            </Link>
+
         </div>
       }
     >
