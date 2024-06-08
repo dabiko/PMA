@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
+/**
+ * @method static create(mixed $data)
+ * @property mixed $name
+ * @property mixed $image_path
+ */
 class Task extends Model
 {
     use HasFactory;
