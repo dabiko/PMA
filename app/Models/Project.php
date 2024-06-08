@@ -7,9 +7,22 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
+/**
+ * @method static create(mixed $data)
+ */
 class Project extends Model
 {
     use HasFactory;
+
+   protected $fillable = [
+       'image_path',
+       'name',
+       'description',
+       'status',
+       'due_date',
+       'created_by',
+       'updated_by'
+   ];
 
     public function tasks(): HasMany
     {
