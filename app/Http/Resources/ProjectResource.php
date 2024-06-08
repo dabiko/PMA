@@ -23,6 +23,8 @@ use Illuminate\Support\Facades\Storage;
 class ProjectResource extends JsonResource
 {
     //use EncryptDecrypt;
+    public static $wrap = false;
+
     /**
      * Transform the resource into an array.
      *
