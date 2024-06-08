@@ -24,6 +24,15 @@ export default function Authenticated({ user, header, children }) {
                                 <NavLink href={route('dashboard')} active={route().current('dashboard')}>
                                     Dashboard
                                 </NavLink>
+                                <NavLink href={route('project.index')} active={route().current('project.index')}>
+                                    Projects
+                                </NavLink>
+                                <NavLink href={route('task.index')} active={route().current('task.index')}>
+                                    Task
+                                </NavLink>
+                                 <NavLink href={route('user.index')} active={route().current('user.index')}>
+                                    Users
+                                </NavLink>
                             </div>
                         </div>
 
@@ -94,6 +103,18 @@ export default function Authenticated({ user, header, children }) {
                     <div className="pt-2 pb-3 space-y-1">
                         <ResponsiveNavLink href={route('dashboard')} active={route().current('dashboard')}>
                             Dashboard
+                        </ResponsiveNavLink>
+
+                        <ResponsiveNavLink href={route('project.index')} active={route().current('project.index')}>
+                            Projects
+                        </ResponsiveNavLink>
+
+                        <ResponsiveNavLink href={route('task.index')} active={route().current('task.index')}>
+                            Tasks
+                        </ResponsiveNavLink>
+
+                        <ResponsiveNavLink href={route('user.index')} active={route().current('user.index')}>
+                            Users
                         </ResponsiveNavLink>
                     </div>
 
